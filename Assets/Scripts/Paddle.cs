@@ -11,6 +11,9 @@ public class Paddle : MonoBehaviour
     Vector2 movement;
     Rigidbody2D body;
 
+    float minX = -8.22f;
+    float maxX = 8.22f;
+
     void Awake() {
         playerInput = new();
         body = GetComponent<Rigidbody2D>();
@@ -27,6 +30,11 @@ public class Paddle : MonoBehaviour
 
     void Move(InputAction.CallbackContext context) {
         movement = context.ReadValue<Vector2>();
-        body.velocity = movement * speed;
+    }
+
+    void FixedUpdate() {
+        var newPosition = body.position + (speed * Time.fixedDeltaTime * movement);
+        var newX = Mathf.Clamp(newPosition.x, minX, maxX);
+        body.MovePosition(new Vector2(newX, newPosition.y));
     }
 }

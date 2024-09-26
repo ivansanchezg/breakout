@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
@@ -27,8 +26,6 @@ public class Ball : MonoBehaviour
             body.velocity = velocity * new Vector2(-1, -1);
             velocity = body.velocity;
         } else if (collision.gameObject.CompareTag("Brick")) {
-            print("Collided with a brick");
-
             var contactPoint = collision.contacts[0].point;
             var boxCollider = collision.gameObject.GetComponent<BoxCollider2D>();
             var bounds = boxCollider.bounds;
