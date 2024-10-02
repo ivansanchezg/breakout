@@ -4,7 +4,6 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     Rigidbody2D body;
-
     Vector2 velocity;
 
     void Awake() {
@@ -54,7 +53,8 @@ public class Ball : MonoBehaviour
 
             velocity = body.velocity;
 
-            Destroy(collision.gameObject);
+            var brick = collision.gameObject.GetComponent<Brick>();
+            GameManager.instance.DestroyBrick(brick);
         }
     }
 

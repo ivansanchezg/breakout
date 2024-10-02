@@ -11,8 +11,8 @@ public class Paddle : MonoBehaviour
     Vector2 movement;
     Rigidbody2D body;
 
-    float minX = -8.22f;
-    float maxX = 8.22f;
+    float minX = -7.33f;
+    float maxX = 7.33f;
 
     void Awake() {
         playerInput = new();
@@ -25,6 +25,7 @@ public class Paddle : MonoBehaviour
     }
 
     void OnDisable() {
+        playerInput.Paddle.Move.performed -= Move;
         playerInput.Disable();
     }
 
