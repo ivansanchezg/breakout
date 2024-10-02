@@ -9,6 +9,7 @@ TagManager:
   - Paddle
   - Brick
   - Ball
+  - Floor
   layers:
   - Default
   - TransparentFX

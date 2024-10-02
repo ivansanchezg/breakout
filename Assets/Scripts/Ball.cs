@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
@@ -11,7 +12,18 @@ public class Ball : MonoBehaviour
     }
 
     void Start() {
-        body.velocity = new Vector2(5, -5);
+        body.velocity = Vector2.zero;
+        velocity = body.velocity;
+        StartCoroutine(SetVelocity());
+    }
+
+    IEnumerator SetVelocity() {
+        yield return new WaitForSeconds(1);
+        int x;
+        do {
+            x = Random.Range(-5, 6);
+        } while (x == 0);
+        body.velocity = new Vector2(x, -4);
         velocity = body.velocity;
     }
 
@@ -43,6 +55,13 @@ public class Ball : MonoBehaviour
             velocity = body.velocity;
 
             Destroy(collision.gameObject);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Floor")) {
+            GameManager.instance.LoseLive();
+            Destroy(gameObject);
         }
     }
 
