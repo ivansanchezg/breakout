@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour {
     PlayerInput playerInput;
     bool isGameOver;
 
+    Ball ball;
     Brick[,] bricks;
     int rows = 5;
     int cols = 10;
@@ -60,6 +61,8 @@ public class GameManager : MonoBehaviour {
                 bricks[row, col].SetColor(colors[row]);
             }
         }
+
+        ball = Instantiate(ballPrefab);
     }
 
     void OnEnable() {
@@ -98,7 +101,7 @@ public class GameManager : MonoBehaviour {
 
     IEnumerator InstantiateBall() {
         yield return new WaitForSeconds(2);
-        Instantiate(ballPrefab);
+        ball = Instantiate(ballPrefab);
     }
 
     void RestartGame(InputAction.CallbackContext context) {
@@ -118,5 +121,6 @@ public class GameManager : MonoBehaviour {
 
         isGameOver = true;
         UI.instance.DisplayYouWin();
+        Destroy(ball.gameObject);
     }
 }
