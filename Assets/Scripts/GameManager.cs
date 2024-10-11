@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour {
                 );
 
                 bricks[row, col].SetColor(colors[row]);
+                bricks[row, col].gameObject.name = $"Brick ({row},{col})";
             }
         }
 

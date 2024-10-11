@@ -10,6 +10,7 @@ TagManager:
   - Brick
   - Ball
   - Floor
+  - OutOfBounds
   layers:
   - Default
   - TransparentFX
